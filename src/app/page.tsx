@@ -47,7 +47,7 @@ export default function Home() {
           </div>
         </div>
       </MaxWidthWrapper>
-      <section className="border-t border-gray-200 bg-gray-50">
+      <section className="border-t border-gray-200 ">
         <MaxWidthWrapper className="py-20">
           <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
             {perks.map((perk) => (
@@ -56,12 +56,12 @@ export default function Home() {
                 className="text-center md:flex md:items-center md:text-left lg:block lg:text-center"
               >
                 <div className="md:flex-shrink-0  flex justify-center">
-                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-900">
+                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-secondary text-secondary-900">
                     {<perk.Icon className="w1/3 h-1/3" />}
                   </div>
                 </div>
                 <div className="mt-6 md:mr-4 md:mt-0 lg:ml-0 lg:mt-6">
-                  <h3 className="text-base font-medium text-gray-900">
+                  <h3 className="text-base font-medium text-secondary-900">
                     {perk.name}
                   </h3>
                   <p className="mt-3 font-normal text-xs text-muted-foreground ">
