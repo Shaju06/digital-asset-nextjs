@@ -45,7 +45,7 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
             className="absolute inset-0 top-1/2 bh-white shadow"
             aria-hidden="true"
           >
-            <div className="relative bg-white">
+            <div className="relative bg-primary">
               <div className="grid grid-cols-4 gap-x-8 gap-y-10 py-16">
                 <div className="col-span-4  col-start-1 grid grid-cols-3 gap-x-8">
                   {category.featured.map((item) => (
