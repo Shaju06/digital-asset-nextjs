@@ -20,7 +20,7 @@ export default buildConfig({
     user: "users",
     bundler: webpackBundler(),
     meta: {
-      titleSuffix: "- DigitalRhino",
+      titleSuffix: "- DigitalAsset",
       favicon: "/favicon.ico",
       ogImage: "/thumbnail.jpg",
     },

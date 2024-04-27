@@ -14,6 +14,9 @@ import {
   TAuthCrendentionalsValidator,
 } from "@/lib/validators/account-crendentional-validators";
 import { trpc } from "@/trpc/client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { ZodError } from "zod";
 
 const Page = () => {
   const {
@@ -24,10 +27,36 @@ const Page = () => {
     resolver: zodResolver(AuthCredentionalValidator),
   });
 
-  const { mutate, isLoading } = trpc.auth.createUser.useMutation();
+  const router = useRouter();
+
+  const { mutate, isLoading } = trpc.auth.createUser.useMutation({
+    onError: (err) => {
+      if (err.data?.code === "CONFLICT") {
+        toast.error("This email is already in use. Sign in instead?");
+
+        return;
+      }
+
+      if (err instanceof ZodError) {
+        toast.error(err.issues[0].message);
+
+        return;
+      }
+
+      toast.error("Something went wrong. Please try again.");
+    },
+    onSuccess: ({ sentToEmail }) => {
+      toast.success(`Verification email sent to ${sentToEmail}.`);
+      router.push("/verify-email?to=" + sentToEmail);
+    },
+  });
 
   const onSubmit = ({ email, password }: TAuthCrendentionalsValidator) => {
-    mutate({ email, password });
+    try {
+      mutate({ email, password });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -60,6 +89,11 @@ const Page = () => {
                     })}
                     placeholder="you@example.com"
                   />
+                  {errors?.email && (
+                    <p className="text-sm text-red-50">
+                      {errors?.email.message}
+                    </p>
+                  )}
                 </div>
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="password">Password</Label>
@@ -71,6 +105,11 @@ const Page = () => {
                     })}
                     placeholder="password"
                   />
+                  {errors?.password && (
+                    <p className="text-sm text-red-50">
+                      {errors?.password.message}
+                    </p>
+                  )}
                 </div>
                 <Button>Sign up</Button>
               </div>

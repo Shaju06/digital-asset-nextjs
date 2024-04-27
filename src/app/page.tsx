@@ -35,7 +35,7 @@ export default function Home() {
             <span className="text-blue-600">digital assets</span>.
           </h1>
           <p className="mt-6 text-lg max-w-prose text-muted-foreground">
-            Welcome to DigitalRhino. Every asset on our <br />
+            Welcome to Digital Asset. Every asset on our <br />
             platform is verified by our team to ensure our <br />
             highest quality standards.
           </p>
