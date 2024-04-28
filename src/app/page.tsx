@@ -1,4 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import ProductReel from "@/components/ProductReel";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
 import Link from "next/link";
@@ -45,6 +46,12 @@ export default function Home() {
             </Link>
             <Button variant={"secondary"}>Our quality promise &rarr; </Button>
           </div>
+          <ProductReel
+            title={"Brand New"}
+            subTitle={""}
+            href="/products"
+            query={{ sort: "desc", limit: 4 }}
+          />
         </div>
       </MaxWidthWrapper>
       <section className="border-t border-gray-200 ">
